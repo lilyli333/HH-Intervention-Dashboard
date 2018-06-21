@@ -1,0 +1,175 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" href="./templates/index.css" type="text/css"> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		{% if title %}
+		<title>{{ title }} - dashboard </title>
+		{% endif %}
+		<style>
+			body {
+				margin: 10; 
+				height: 100%; 
+				overflow: hidden;
+				text-align: center;
+			}
+			.flex-container{
+				display: flex;
+				flex-direction: row;
+				/* justify-content: space-around; */
+				align-items: center; 
+				width: 100vw;
+				height: 50%;
+			}
+			.sensor-flex-container{
+				display: flex;
+				flex-direction: row;
+				/* justify-content: space-around; */
+				align-items: center; 
+				width: 100vw;
+				height: 10vh;
+			}
+			.flex-box{
+				width: 350px;
+				height: 100%;
+			}
+			div.sensor-label{
+				height: 5vh;
+			}
+			#sensor-label{
+				text-overflow: scale;
+				font-size: 100%;
+				align-items: center;
+
+			}
+			div.sensorscroll {
+				overflow-y: scroll;
+				white-space: nowrap;
+				width: 100%;
+				height: 100%;
+				/* align-items: center; */
+			}
+			div.sensorscroll a {
+					display: inline-block;
+					text-align: center;
+					text-decoration: none;
+			}
+			.sensorImg{
+					padding: 5px;
+					height: 100%;
+			}
+			 #map{
+				width: 70%;
+				align-items: center;
+				margin: 10px;
+			}
+			div.flex-grid-container{
+				display: flex;
+				flex-direction: row;
+				/* justify-content: space-around; */
+				align-items: center; 
+				width: 100vw;
+				height: 50vh;
+			}
+			.row div {
+ 	 			height: 30vh; /* 30% of viewport height*/
+			}
+			#label{
+				background-color: pink;
+				height: 22%;
+			}
+			#graphs{
+				height: 100%;
+			}
+			.ver-flex-container{
+				display: flex;
+				flex-direction: column;
+				height: 65vh;
+			}
+			.grid-flex-box{
+				width: 100%;
+				height: 100%;
+			}
+			.graphs-flex-container{
+				display: flex;
+				flex-direction: row;
+			}
+			.maps-flex-box{
+				width: 30vw;
+			}
+		</style>
+
+<script language="javascript">
+		var scrollRight = true;
+		function func (){
+			sensorscroll = document.getElementById('sensorscroll');
+			position = sensorscroll.scrollLeft;
+
+			if(position == sensorscroll.scrollWidth - sensorscroll.offsetWidth){
+				scrollRight = false;
+			}
+			if(position == 0){
+				scrollRight = true;
+			}
+
+			if(scrollRight){
+					sensorscroll.scrollLeft += 1;
+			}
+			else {
+					sensorscroll.scrollLeft -=1;
+			}
+		}
+		setInterval('func()',10);
+		</script>
+	</head>
+	<body>
+		<!-- sensors feed -->
+		<div class="sensor-label">
+				<h1 id="sensor-label">Sensors<h1>
+		</div>
+		<div class="sensor-flex-container">
+			<div class="sensorscroll" id="sensorscroll">
+				{% for image in images %}
+				<img src={{ image }} alt="sensor footage" class="sensorImg"/>
+				<img src={{ image }} alt="sensor footage" class="sensorImg"/>
+				<img src={{ image }} alt="sensor footage" class="sensorImg"/>
+				<img src={{ image }} alt="sensor footage" class="sensorImg"/>
+				{% endfor %}
+			</div>
+		</div>
+
+		<br>
+	<div class="ver-flex-container">
+		<div class="grid-flex-box" id="graphs">
+			<div class="graphs-flex-container">
+				<!-- <div class="row"> -->
+					<!-- <div class="col-12 col-md-4" height="60vh"> -->
+				<div class="maps-flex-box">
+						<h1>map</h1>
+						<img src= "http://images.clipartpanda.com/hospital-clipart-hospital-why-do-patients-continue-to-go-to-the-er-for-their-primary-care-clip-art.jpg" id = "map">
+				</div>
+						<!-- </div> -->
+					<!-- <div class="col-6 col-md-8"> -->
+				<div class="graphs-flex-box">
+						<div class="flex-container">
+							<div class="flex-box">compliance %</div>
+							<div class="flex-box">graph 1</div>
+						</div>
+						<div class="flex-container">
+							<div class="flex-box">graph 2</div>
+							<div class="flex-box">graph 3</div>
+						</div>
+					<!-- </div> -->
+				<!-- </div> -->
+				</div>
+			</div>
+		</div>
+		<div class="grid-flex-box" id="label">
+			<h1>go wash your hands!</h1>
+			<h1>go wash your hands!</h1>
+		</div>
+	</div>
+<!-- </div> -->
+</body>
+</html>
